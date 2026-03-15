@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+    <script src="../Objects/Game.js"></script>
+    <script src="../Objects/Player.js"></script>
+   
+    
+
+    <script>
+
+    alert("sucesso!");
+    let data = localStorage.getItem('playerData');
+    if(data){
+    let playerData = JSON.parse(data);
+
+    let player = new Player(playerData.name, playerData.class_id);
+    player.init();
+    player.level = playerData.level;
+    player.xp = playerData.xp;
+    }
+</script>
+ <script src="../Objects/Enemy.js"></script>
+
+ <script>
+    let enemy1 = new Enemy("Goblin", 1);
+    enemy1.init();
+    
+   for(let player of Game.players){
+    console.log(player);
+}
+    for(let enemy of Game.enemies){
+        console.log(enemy);
+    }
+    </script>
+</body>
+</html>

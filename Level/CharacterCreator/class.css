@@ -1,0 +1,109 @@
+/* Reset básico */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+/* Fundo da página */
+body{
+    background: linear-gradient(135deg,#0f172a,#020617);
+    color:white;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+}
+
+/* Cartões das classes */
+form{
+    width:350px;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    background:rgba(20,20,20,0.9);
+    box-shadow:0 0 20px rgba(0,0,0,0.8);
+    border:2px solid #444;
+    transition:0.3s;
+}
+
+/* Hover leve */
+form:hover{
+    transform:scale(1.03);
+}
+
+/* Título */
+h1{
+    margin-bottom:10px;
+    font-size:30px;
+}
+
+/* descrição */
+form p{
+    margin:5px 0;
+}
+
+/* stats */
+.stats{
+    margin-top:15px;
+    padding-top:10px;
+    border-top:1px solid #555;
+}
+
+/* cores diferentes para cada classe */
+
+.warrior{
+    border-color:#b91c1c;
+}
+
+.wizard{
+    border-color:#1d4ed8;
+}
+
+.rogue{
+    border-color:#16a34a;
+}
+
+/* Botão principal */
+.selectClassBtn{
+    padding:12px 35px;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+    background:#facc15;
+    color:black;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.2s;
+}
+
+.selectClassBtn:hover{
+    background:#fde047;
+    transform:scale(1.05);
+}
+
+/* Botões next/back */
+.btn{
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    background:#1f2937;
+    color:white;
+    cursor:pointer;
+    margin:5px;
+    transition:0.2s;
+}
+
+.navButtons{
+    display:flex;
+    gap:15px;
+    justify-content:center;
+}
+
+.btn:hover{
+    background:#374151;
+    transform:scale(1.05);
+}

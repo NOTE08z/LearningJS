@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="class.css">
+    <title>Escolha sua classe</title>
+</head>
+<body>
+
+    <button id="return" class="btn">Return</button>
+
+    <form id="Warrior" class="warrior">
+        <h1>Warrior</h1>
+        <p>Warriors are tough melee fighters with high health and defense.</p>
+        <div class="stats">
+            <p><strong>Health:</strong> 26</p>
+            <p><strong>Strength:</strong> 3</p>
+            <p><strong>Dexterity:</strong> 2</p>
+            <p><strong>Constitution:</strong> 4</p>
+            <p><strong>Wisdom:</strong> 0</p>
+            <p><strong>Willpower:</strong> 2</p>
+            </div>
+    
+        </form>
+        <form id="wizard" class="wizard">
+        <h1>Wizard</h1>
+        <p>Wizards cast powerful spells and control the battlefield with magic.</p>
+    <div class="stats">
+        <p><strong>Health:</strong> 14</p>
+        <p><strong>Strength:</strong> 0</p>
+        <p><strong>Dexterity:</strong> 2</p>
+        <p><strong>Constitution:</strong> 2</p>
+        <p><strong>Wisdom:</strong> 4</p>
+        <p><strong>Willpower:</strong> 2</p>
+    </div>
+    </form>
+    <form id="rogue" class="rogue">
+    <h1>Rogue</h1>
+    <p>Rogues are agile and cunning, excelling in stealth, precision, and quick attacks.</p>
+    <div class="stats">
+        <p><strong>Health:</strong> 18</p>
+        <p><strong>Strength:</strong> 1</p>
+        <p><strong>Dexterity:</strong> 4</p>
+        <p><strong>Constitution:</strong> 2</p>
+        <p><strong>Wisdom:</strong> 0</p>
+        <p><strong>Willpower:</strong> 2</p>
+    </div>
+    
+
+    </form>
+    <button type="submit" id="SelectClass" class="selectClassBtn">Select</button>
+
+    <input type="number" id="classID" value="0" hidden>
+     <div class="navButtons">
+    <button id="backButton" class="btn">Past Class</button>
+    <button id="nextButton" class="btn">Next class</button>
+    </div>
+    <script src="../../Objects/Game.js"></script>
+    <script src="../../Objects/Player.js"></script>
+
+    <script>
+    let classID = document.getElementById('classID');
+
+    //fotm variables
+    const warrior_Form = document.getElementById('Warrior');
+    const wizard_Form = document.getElementById('wizard');
+    const rogue_Form = document.getElementById('rogue');
+
+    //buttons
+    const return_Button = document.getElementById('return');
+    const select_Class_Btn = document.getElementById('SelectClass');
+    const back_Button = document.getElementById('backButton');
+    const next_Button = document.getElementById('nextButton');
+
+
+    return_Button.addEventListener('click', () => {
+        window.location.href = '../../Main/Main.html';
+    });
+
+
+    back_Button.addEventListener('click', () => {
+        classID.value = (parseInt(classID.value) - 1 + 3) % 3;
+        selectClass();
+    });
+    
+    next_Button.addEventListener('click', () => {
+        classID.value = (parseInt(classID.value) + 1) % 3;
+        selectClass();
+    });
+    window.onload = selectClass;
+
+    select_Class_Btn.addEventListener('click', () => {
+        let name = localStorage.getItem("characterName");
+        let player = new Player(name, parseInt(classID.value));
+        player.init();
+        localStorage.setItem('playerData', JSON.stringify(player));
+        window.location.href = '../battle.html';
+    });
+
+    function selectClass(){
+
+        switch (parseInt(classID.value)) {
+            case 0:
+                warrior_Form.style.display = 'block';
+                wizard_Form.style.display = 'none';
+                rogue_Form.style.display = 'none';
+                break;
+            case 1:
+                warrior_Form.style.display = 'none';
+                wizard_Form.style.display = 'block';
+                rogue_Form.style.display = 'none';
+                break;
+            case 2:
+                
+                warrior_Form.style.display = 'none';
+                wizard_Form.style.display = 'none';
+                rogue_Form.style.display = 'block';
+                break;
+            default:
+                console.error('Invalid class ID');
+        }
+    }
+
+
+    </script>
+</body>
+</html>

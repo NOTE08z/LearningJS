@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Main.css">
+    <title>RPG</title>
+</head>
+<body>
+
+    <h1> RPG Challenge</h1>
+    <h3>I seriously don't know why I am doing this instead of learning NODE.js</h3>
+
+    <p>First, insert your character name</p>
+
+    <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <button type="submit">Submit</button>
+    </form>
+
+    <script src="../Objects/Game.js"></script>
+    <script src="../Objects/Player.js"></script>
+    <script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (event) => {
+        event.preventDefault(); // Prevent the default form submission behavior
+
+        const nameInput = document.getElementById('name');
+        const name = nameInput.value;
+        
+        if(name.trim() === ""){
+            alert("Please enter a valid name.");
+            return;
+        }
+        // Store the name in localStorage
+        localStorage.setItem('characterName', name);
+
+        // Redirect to the class selection page
+        window.location.href = '../Level/CharacterCreator/class.html';
+    });
+   </script>
+
+
+    
+</body>
+</html>
