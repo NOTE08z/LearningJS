@@ -3,19 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link type="stylesheet" href="../Objects/Scene/scene.css">
+    <title>RPG</title>
 </head>
 <body>
     
-    
+    <div class="outside">
+        <div class="combat-box">
+            <div class="scene-box">
+                <div class="enemy-icon">
+                </div>
+                <div class="enemy-life">
+                </div>
+               <div class="combat-history">
+               </div>
+            </div>
+            <div class="player-box">
+                <div class="player-info">
+                </div>
+                <div class="player-attack-list">
+                </div>
+            </div>
+        </div>
+
+    </div>
     <script src="../Objects/Game.js"></script>
     <script src="../Objects/Player.js"></script>
-   
-    
 
     <script>
-
-    alert("sucesso!");
+    //get player of past document
     let data = localStorage.getItem('playerData');
     if(data){
     let playerData = JSON.parse(data);
@@ -25,19 +41,16 @@
     player.level = playerData.level;
     player.xp = playerData.xp;
     }
-</script>
- <script src="../Objects/Enemy.js"></script>
-
- <script>
-    let enemy1 = new Enemy("Goblin", 1);
-    enemy1.init();
-    
-   for(let player of Game.players){
-    console.log(player);
-}
-    for(let enemy of Game.enemies){
-        console.log(enemy);
-    }
     </script>
+ <script src="../Objects/Enemy.js"></script>
+ <script src="../Objects/BattleCalculator.js"></script>
+ <script src="../Objects/Scene/scene.js"></script>
+<script>
+    let enemy = new Enemy();
+    let scene = new Scene(true,player, enemy);
+    scene.init();
+</script>
+ <script src="../Objects/Scene/hud.js"></script>
+
 </body>
 </html>

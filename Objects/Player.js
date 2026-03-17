@@ -18,6 +18,7 @@ class Player {
     this.con;
     this.sab;
     this.will;
+    this.increment;
 
     //Stats Variables
     this.hp;
@@ -74,6 +75,7 @@ class Player {
             this.con = 4;
             this.sab = 0;
             this.will = 2;
+            this.increment = this.str;
             this.attack_list.push("Basic Strike", "Strong Strike", "Guard");
         break;
         case 2:
@@ -95,6 +97,7 @@ class Player {
             this.con = 1;
             this.sab = 4;
             this.will = 2;
+            this.increment = this.sab;
 
             this.attack_list.push("Magic Missile", "Fireball", "Magic Shield");
         break;
@@ -116,6 +119,7 @@ class Player {
             this.con = 2;
             this.sab = 0;
             this.will = 2;
+            this.increment = this.dex;
 
             this.attack_list.push("Backstab", "Dagger Throw", "Sneak Attack");
         break;
@@ -142,7 +146,7 @@ class Player {
                     this.dmg = this.str + this.dice_rolls * this.dice_sides;
                     this.crit_dmg = Math.ceil(this.dmg * 2);
                     this.crit = 18;
-                    this.attack_text = "You strike the enemy with your weapon, dealing " + this.dmg + " damage.";
+                    this.attack_text = "You strike the enemy with your weapon, dealing";
                 break;
                 case 1:
                     this.dice_rolls = 2;
@@ -150,7 +154,7 @@ class Player {
                     this.dmg = (this.str * 2) + this.dice_rolls * this.dice_sides;
                     this.crit_dmg = this.dmg * 3;
                     this.crit = 20;
-                    this.attack_text = "You strike the enemy with a powerful blow, dealing " + this.dmg + " damage.";
+                    this.attack_text = "You strike the enemy with a powerful blow, dealing ";
                     this.mp = this.mp - 2;
                 break;
                 case 2:
@@ -178,7 +182,7 @@ class Player {
                     this.dmg = (this.str * 3) + dice_rolls * dice_sides;
                     this.crit_dmg = this.dmg * 3;
                     this.crit = 20;
-                    this.attack_text = "You, blessed by the gods, smite the enemy with a powerful strike,dealing " + this.dmg + " damage.";
+                    this.attack_text = "You, blessed by the gods, smite the enemy with a powerful strike,dealing ";
                     this.mp = this.mp - 3;
                 break;
 
@@ -192,7 +196,7 @@ class Player {
                         this.dmg = this.sab + dice_rolls * dice_sides;
                         this.crit_dmg = this.dmg * 2;
                         this.crit = 20;
-                        this.attack_text = "You cast a magic missile, dealing " + this.dmg + " damage.";
+                        this.attack_text = "You cast a magic missile, dealing ";
                     break;
                     case 1:
                         this.dice_rolls = 3;
@@ -202,7 +206,7 @@ class Player {
                         if(this.crit_check){
                             this.dmg += Math.floor((Math.random()*4))+1+ this.sab;
                         }
-                        this.attack_text = "You cast a fireball, dealing " + this.dmg + " damage.";
+                        this.attack_text = "You cast a fireball, dealing ";
                         this.mp -= 2;
                     break;
                     case 2:
@@ -256,7 +260,7 @@ class Player {
                             this.dmg = this.dex + dice_rolls * dice_sides;
                             this.crit_dmg = this.dmg * 2;
                             this.crit = 20;
-                            this.attack_text = "You strike the enemy with a sneak attack, dealing " + this.dmg + " damage.";
+                            this.attack_text = "You strike the enemy with a sneak attack, dealing ";
                             this.mp -= 2;
                         break;
                         case 3:
@@ -267,7 +271,22 @@ class Player {
                         break;
 
                     }
+                
+
+                
                 }
+
+                return {
+                    dice_rolls: this.dice_rolls,
+                    dice_sides: this.dice_sides,
+                    crit_dmg: this.crit_dmg,
+                    crit: this.crit,
+                    effect: this.effect || null,
+                    effect_duration: this.effect_duration,
+                    attack_text: this.attack_text
+                }
+
+
             }
     
         defineStats(){
